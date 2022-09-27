@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-image: url("https://i.pinimg.com/originals/46/2f/56/462f56d9c11e41741daae2c35c70f069.jpg");
+    }
+     iframe{
+         margin-right: 200px;
+     }
+     .mapouter{
+         display: flex;
+         margin-left: 800px;
+       
+         margin-top: -400px;
+         width: 100%;
+         height: 500px;
+     }
+     #container{
+        text-align: center;
+        color: white !important;
+        margin-top: 100px;
+         /* border: 1px solid aqua; */
+         background-color:rgb(56, 54, 54);
+         width: 300px;
+         height: 300px;
+         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+         padding: 10px;
+     }
+    
+</style>
+<body onload="getLocation ()">
+    <input type="text" name="" id="city" placeholder="type city name">
+    <button onclick="getData()"> Search weather</button>
+    <div id="container"></div>
+    <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+</body>
+</html>
+<script src="fetch.js"></script>

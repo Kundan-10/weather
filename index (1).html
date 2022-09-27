@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #data_7{
+            height: 300px;
+            width: 300px;
+        }
+        img{
+          
+            width: 75%;
+        }
+        #whether{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+     
+ 
+     <div id="main" >
+ <input type="text" id="input" placeholder="Enter city"  >
+ <button id="button" >Search</button>
+
+     </div>
+
+     <div id="whether" ></div>
+
+
+</body>
+</html>
+<script>
+
+
+const api_key="029c92bf32f169fd511c3e1d6e4a3487"
+
+document.querySelector("#button").addEventListener("click",getData)
+let a;
+let b;
+async function getData(){
+    let city=document.querySelector("#input").value
+
+    let url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`
+
+    let res=await fetch(url)
+
+    let data=await res.json()
+
+    let a=data.coord.lat;
+let b=data.coord.lon;
+    getData7(a,b)
+}
+
+async function getData7(a,b){
+
+    let url7=`https://api.openweathermap.org/data/2.5/onecall?lat=${a}&lon=${b}&exclude=hourly&appid=${api_key}`
+
+    let res7= await fetch(url7)
+
+    let data7= await res7.json()
+
+    append(data7.daily)
+}
+
+function append(data)
+{
+    let box=document.querySelector("#whether");
+    box.innerHTML=null;
+
+   
+    data.forEach(function (el){
+
+        let div=document.createElement("div")
+        div.setAttribute("id","data_7")
+
+        let min=document.createElement("p")
+        let x=el.temp.min.
+
+
+
+
+
+        x=x-273.15;
+
+        min.innerText=`Min_temp-${Math.floor(x)}`
+        let max=document.createElement("p")
+        let y=el.temp.max
+        y=y-273.15
+        max.innerText=`Max_temp-${Math.floor(y)}`
+        let image=document.createElement("img")
+
+if(y>34.5){
+    image.src="https://content.jdmagicbox.com/comp/kota-rajasthan/t8/9999px744.x744.130218153149.c7t8/catalogue/sun-iti-classes-kota-city-kota-rajasthan-institutes-for-iti-1wd3c.jpg"
+}else{
+    image.src="https://www.treehugger.com/thmb/0YzrZoQ1XuYCdsMSG3meMO6_C58=/1000x562/smart/filters:no_upscale()/__opt__aboutcom__coeus__resources__content_migration__treehugger__images__2019__09__cloud-0693b27e05ee4a1c802182da4aa117a9.jpg"
+}
+div.append(image,max,min)
+box.append(div)
+    
+})
+
+}
+
+
+
+
+
+
+</script>
